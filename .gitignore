@@ -1,0 +1,9 @@
+# virtual enviroment folders
+bin/
+lib/
+share/
+env/
+
+.env
+
+.DS_Store
