@@ -39,10 +39,13 @@ If your project is constructed out of multiple Repositories, you can specify the
 
 ## Documentation
 
-<!--
-Documentation is a crucial part of every project, but also maybe during the hackathon, you did not have time to create it. We recommend coming back later and filling in this part, for example, with https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis
--->
+~~~
+python3 -m venv env
+source env/bin/activate
+pip install -r req.txt
+~~~
 
+Create your own .env file with OPENAI_API_KEY and GH_TOKEN.
 
 ## Contributors ✨
 
