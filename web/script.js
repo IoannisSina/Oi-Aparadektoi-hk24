@@ -9,32 +9,33 @@ slider.on('mousedown touchstart', function(event){
 	initialMouse = event.clientX || event.originalEvent.touches[0].pageX;
 });
 
-$(document.body, '#slider').on('mouseup touchend', function (event) {
-	if (!mouseIsDown)
-		return;
-	mouseIsDown = false;
-	var currentMouse = event.clientX || event.changedTouches[0].pageX;
-	var relativeMouse = currentMouse - initialMouse;
+$(document.body, '#slider').on('mouseup touchend', function(event) {
+    if (!mouseIsDown)
+        return;
+    mouseIsDown = false;
+    var currentMouse = event.clientX || event.changedTouches[0].pageX;
+    var relativeMouse = currentMouse - initialMouse;
 
-	if (relativeMouse < slideMovementTotal) {
-		$('.slide-text').fadeTo(300, 1);
-		slider.animate({
-			left: "-10px"
-		}, 300);
-		return;
-	}
-	slider.addClass('unlocked');
-	$('#locker').text('lock_outline');
-	setTimeout(function(){
-		slider.on('click tap', function(event){
-			if (!slider.hasClass('unlocked'))
-				return;
-			slider.removeClass('unlocked');
-			$('#locker').text('lock_open');
-			slider.off('click tap');
-		});
-	}, 0);
+    if (relativeMouse < slideMovementTotal) {
+        $('.slide-text').fadeTo(300, 1);
+        slider.animate({
+            left: "-10px"
+        }, 300);
+        return;
+    }
+    // ON DRAG FUNCTIONALITY post request to the server
+    var urlText = $('#gitUrl').val();
+	console.log(urlText) // Assuming your input field has id "url-input"
+    $.post('http://localhost:8000/description', {
+        urlText: urlText
+    }, function(data) {
+        // Handle the response here and put it in the big-textarea-raw textarea
+		$('#big-textarea-raw').val(data);
+		$('#big-textarea-edited').val(data);
+    });
 });
+
+
 
 $(document.body).on('mousemove touchmove', function(event){
 	if (!mouseIsDown)
