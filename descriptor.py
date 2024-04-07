@@ -32,11 +32,11 @@ class GitHubGPT:
         for content in contents:
             if content.type == 'dir':
                 self.read_files(self.repo.get_contents(content.path))
-            else:
+            elif content.name.endswith(('.py', '.java', '.c', '.cpp', '.cbl', '.js', '.html', '.css', '.php', '.rb', '.yaml')):
                 try:
                     # We use try/except to handle the case where the file is not a source code file
                     self.file_contents.append({
-                        'name': content.name,
+                        'name': content.path,
                         'content': base64.b64decode(content.content).decode('utf-8')
                     })
                 except:
@@ -53,8 +53,7 @@ class GitHubGPT:
         completion = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Explain the given code in pseudocode form. It must be in a form where another machine can process it and create the same logic in multiple programming languages. Include all variables and dependencies needed. Include the files structure."},
-                {"role": "user", "content": prompt},
+                {"role": "user", "content": f"{prompt} \n----------\n Convert the given code in pseudocode. It must be in a form where it can be reconstructed in any programming language. Include all variables and the file structure."},
                 ],
                 temperature=0.2,
                 n=1,
@@ -70,13 +69,9 @@ def get_description(repo):
         f.write(response)
     return response
 
-get_description('xxx')
-
 # repo = 'https://github.com/kounelisagis/Arrivals-of-non-residents-in-Greece'
 
-# Use tkinter for the GUI. One input with a button and one text field.
-# The user will input the GitHub URL and click the button.
-# The output will be displayed in the text field.
+get_description('https://github.com/IoannisSina/calculator-kobolt')
 
 # window = tk.Tk()
 # window.title('GitHub GPT')
