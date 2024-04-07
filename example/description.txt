@@ -1,0 +1,76 @@
+I want a python script as it is described bellow:
+
+VARIABLES:
+- board: 3x3 array of characters representing the Tic-Tac-Toe board
+- player: character representing the current player ('X' or 'O')
+- winner: character representing the winner ('X', 'O', 'D' for draw, or ' ' for ongoing game)
+- row: integer representing the row input by the player
+- col: integer representing the column input by the player
+- i, j: integer loop counters
+
+FUNCTION initialize_board():
+    FOR i = 0 to 2:
+        FOR j = 0 to 2:
+            board[i][j] = ' '
+
+FUNCTION display_board():
+    PRINT "\n"
+    PRINT " %c | %c | %c \n", board[0][0], board[0][1], board[0][2]
+    PRINT "---+---+---\n"
+    PRINT " %c | %c | %c \n", board[1][0], board[1][1], board[1][2]
+    PRINT "---+---+---\n"
+    PRINT " %c | %c | %c \n", board[2][0], board[2][1], board[2][2]
+    PRINT "\n"
+
+FUNCTION check_winner():
+    FOR i = 0 to 2:
+        IF board[i][0] == board[i][1] == board[i][2] != ' ':
+            RETURN board[i][0]  // Winner in row
+        IF board[0][i] == board[1][i] == board[2][i] != ' ':
+            RETURN board[0][i]  // Winner in column
+    IF board[0][0] == board[1][1] == board[2][2] != ' ':
+        RETURN board[0][0]  // Winner in diagonal
+    IF board[0][2] == board[1][1] == board[2][0] != ' ':
+        RETURN board[0][2]  // Winner in diagonal
+    FOR i = 0 to 2:
+        FOR j = 0 to 2:
+            IF board[i][j] == ' ':
+                RETURN ' '  // Game still ongoing
+    RETURN 'D'  // Draw
+
+FUNCTION get_move(player):
+    PRINT "Player %c's turn. Enter row and column (1-3): ", player
+    SCAN row, col
+    row = row - 1
+    col = col - 1
+    IF board[row][col] != ' ':
+        PRINT "Invalid move. Cell already taken. Try again.\n"
+        CALL get_move(player)
+    ELSE:
+        board[row][col] = player
+
+MAIN:
+    player = 'X'
+    winner = ' '
+    
+    CALL initialize_board()
+    CALL display_board()
+
+    WHILE True:
+        CALL get_move(player)
+        CALL display_board()
+        winner = check_winner()
+
+        IF winner != ' ':
+            IF winner == 'D':
+                PRINT "It's a draw!\n"
+            ELSE:
+                PRINT "Player %c wins!\n", winner
+            BREAK
+
+        IF player == 'X':
+            player = 'O'
+        ELSE:
+            player = 'X'
+
+END_MAIN 
