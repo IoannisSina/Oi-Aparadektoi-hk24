@@ -5,19 +5,23 @@ html, body {
 }
 body {
 	background-color: #ffffff;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
 }
 
+.header{
+	background-color: #000000;
+	color: #ffffff;
+	padding: 3px;
+	margin: 3px;
+	width: 100%;
+	text-align: center;
+}
 
 .container{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	height: 90%;
+	height: 85%;
 	width: 100%;
 }
 
@@ -159,6 +163,7 @@ textarea {
 
 .progress {
 	width: 100%;
+	display: none;
 	padding: 2px;
 	background: rgba(0, 0, 0, 0.25);
 	border-radius: 6px;
@@ -200,12 +205,12 @@ textarea {
 #proceed-button {
 	margin-top: 10%;
 	background-color: #ffffff;
+	font-family: 'Courier New', Courier, monospace;
 	color: #000000;
 	border-radius: 10px;
 	border: 0cm;
-	width: 50%;
 	font-size: large;
-	font-family: 'Courier New', Courier, monospace;
+	width: 50%;
 }
 
 #proceed-button:hover {
