@@ -68,37 +68,3 @@ def get_description(repo):
     with open('response.md', 'w') as f:
         f.write(response)
     return response
-
-# repo = 'https://github.com/kounelisagis/Arrivals-of-non-residents-in-Greece'
-
-get_description('https://github.com/IoannisSina/calculator-kobolt')
-
-# window = tk.Tk()
-# window.title('GitHub GPT')
-# window.geometry('600x600')
-
-# def get_desc():
-#     repo = entry.get()
-#     get_description(repo)
-#     text.insert(tk.END, get_description(repo))
-
-# def save():
-#     with open('response.md', 'w') as f:
-#         f.write(text.get('1.0', tk.END))
-#     window.destroy()
-
-# label = tk.Label(window, text='Enter the GitHub URL:')
-# label.pack()
-
-# entry = tk.Entry(window)
-# entry.pack()
-# button = tk.Button(window, text='Get Description', command=get_desc)
-# button.pack()
-# text = tk.Text(window)
-# text.pack()
-
-# # save button to save the output to a file (response.md)
-# button = tk.Button(window, text='Save', command=save)
-# button.pack()
-
-# window.mainloop()

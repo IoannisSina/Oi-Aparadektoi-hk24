@@ -15,10 +15,10 @@ def generate_json(description, language):
             {"role": "user", "content": f"{description} \n----------\n make it {language} programming language. The output must be in JSON format where keys are relative file paths and values are content of this file."},
         ],
         temperature=0.2,
-        n=1,
+        n=5,
     )
 
-    return completion.choices[0].message.content
+    return [completion.choices[x].message.content for x in range(5)]
 
 with open('response.md') as f:
     description = f.read()
@@ -37,19 +37,13 @@ def extract_between_curly_braces(input_str):
     
     return substring_between_braces
 
+if __name__ == '__main__':
 
-project_name = input('Enter the project name: ')
-language = input('Enter the language: ')
-data = generate_json(description, language)
-print(data)
-# try:
-data = json.loads(data, strict=False)
-# except:
-#     data = json.loads(extract_between_curly_braces(data))
+    new_programming_language = input("Enter the programming language to convert the code to: ")
+    json_data = generate_json(description, new_programming_language)
+    # delete new lines from json_data
+    
 
-if not os.path.exists(project_name): os.makedirs(project_name)
-
-for file_name, content in data.items():
-    with open(f'{project_name}/{file_name}', 'w') as f:
-        print(content)
-        f.write(content)
+    for file_name, content in data.items():
+        with open(f'{file_name}', 'w') as f:
+            f.write(content)
