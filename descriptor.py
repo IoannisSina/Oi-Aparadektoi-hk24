@@ -1,4 +1,5 @@
 import os
+import tkinter as tk
 
 import base64
 from github import Github
@@ -52,8 +53,7 @@ class GitHubGPT:
         completion = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                # {"role": "system", "content": "The following code must be converted to a fully descriptive markdown file so it can be reproduced."},
-                {"role": "system", "content": "Explain the given code in pseudocode form. It must be in a form where another machine can read it and create the same logic in multiple programming languages. Include all variables and dependencies needed."},
+                {"role": "system", "content": "Explain the given code in pseudocode form. It must be in a form where another machine can process it and create the same logic in multiple programming languages. Include all variables and dependencies needed. Include the files structure."},
                 {"role": "user", "content": prompt},
                 ],
                 temperature=0.2,
@@ -62,8 +62,48 @@ class GitHubGPT:
 
         return completion.choices[0].message.content
 
+def get_description(repo):
+    xxx = GitHubGPT(os.environ.get('GH_TOKEN'), repo)
+    xxx.read_files()
+    response = xxx.generate_response()
+    with open('response.md', 'w') as f:
+        f.write(response)
+    return response
 
-xxx = GitHubGPT(os.environ.get('GH_TOKEN'), 'https://github.com/kounelisagis/Arrivals-of-non-residents-in-Greece')
-xxx.read_files()
-with open('response.md', 'w') as f:
-    f.write(xxx.generate_response())
+get_description('xxx')
+
+# repo = 'https://github.com/kounelisagis/Arrivals-of-non-residents-in-Greece'
+
+# Use tkinter for the GUI. One input with a button and one text field.
+# The user will input the GitHub URL and click the button.
+# The output will be displayed in the text field.
+
+# window = tk.Tk()
+# window.title('GitHub GPT')
+# window.geometry('600x600')
+
+# def get_desc():
+#     repo = entry.get()
+#     get_description(repo)
+#     text.insert(tk.END, get_description(repo))
+
+# def save():
+#     with open('response.md', 'w') as f:
+#         f.write(text.get('1.0', tk.END))
+#     window.destroy()
+
+# label = tk.Label(window, text='Enter the GitHub URL:')
+# label.pack()
+
+# entry = tk.Entry(window)
+# entry.pack()
+# button = tk.Button(window, text='Get Description', command=get_desc)
+# button.pack()
+# text = tk.Text(window)
+# text.pack()
+
+# # save button to save the output to a file (response.md)
+# button = tk.Button(window, text='Save', command=save)
+# button.pack()
+
+# window.mainloop()

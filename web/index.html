@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Code App</title>
+    <!-- CSS Style -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="container-text">
+        <textarea id="big-textarea-raw" placeholder="Enter your text here..."></textarea>
+    </div>
+    <div id="container-input">
+        <form>
+            <input type="text" id="gitUrl" name="gitUrl" placeholder="Enter Git URL">
+            <span>or</span>
+            <input type="file" name="file" id="file" class="inputfile" />
+            <label for="file">Choose a file</label>
+        </form>
+        <div id="button-background">
+            <span class="slide-text">Swipe right</span>
+            <div id="slider">
+                <i class="fa fa-code fa-3x" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="process">
+            <div class="progress progress-infinite">
+                <div class="progress-bar">
+                </div>
+            </div>
+            <button id="proceed-button" style="display: none;">Proceed</button>
+        </div>
+    </div>
+    <div class="container-text">
+        <textarea id="big-textarea-edited" placeholder="Enter your text here..."></textarea>
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</html>

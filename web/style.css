@@ -1,0 +1,214 @@
+html, body {
+	height: 100%;
+	overflow: hidden;
+	font-family: 'Courier New', Courier, monospace;
+}
+body {
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.container{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	height: 90%;
+	width: 100%;
+}
+
+.container > * {
+	padding: 20px;
+}
+
+/* All the elements in horizontal */
+.container-text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+.container-input {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+/* All the elements vertical */
+form{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+form > * {
+	padding: 20px;
+}
+
+#gitUrl {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+
+	border-radius: 10px;
+    color: rgb(39, 39, 39);
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+}
+
+#button-background {
+	position: relative;
+	background-color: rgba(186, 186, 186, 0.411);
+	width: 400px;
+	height: 80px;
+	border: rgb(144, 198, 184);
+	border-radius: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+#slider {
+	transition: width 0.3s, border-radius 0.3s, height 0.3s;
+	position: absolute;
+	left: -10px;
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+#slider.unlocked {
+	transition: all 0.3s;
+	width: inherit;
+	left: 0 !important;
+	height: inherit;
+	border-radius: inherit;
+}
+
+.slide-text {
+	color: #3a3d55;
+	font-size: 18px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+
+textarea {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ccc;
+	color: #ffffff;
+	background-color: rgb(44, 44, 44);
+	border-radius: 5px;
+	padding: 10px;
+	font-family: inherit;
+	font-size: 14px;
+}
+
+.process{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.process > * {
+	padding: 20px;
+}
+
+.progress {
+	width: 100%;
+	padding: 2px;
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar {
+	height: 18px;
+	border-radius: 4px;
+	background-image: linear-gradient(to right, #355070, #6d597a, #b56576, #e56b6f, #eaac8b, #ff2d55);
+	transition: 0.4s linear;
+	transition-property: width, background-color;
+}
+.progress-infinite .progress-bar {
+	width: 100%;
+	background-image: linear-gradient(to right, #355070, #6d597a, #b56576, #e56b6f, #eaac8b, #ff2d55);
+	animation: colorAnimation 1s infinite;
+}
+@keyframes colorAnimation {
+	0% {
+		background-image: linear-gradient(to right, #355070, #6d597a, #b56576, #e56b6f, #eaac8b, #ff2d55);
+   }
+	20% {
+		background-image: linear-gradient(to right, #6d597a, #b56576, #e56b6f, #eaac8b, #ff2d55, #355070);
+   }
+	40% {
+		background-image: linear-gradient(to right, #b56576, #e56b6f, #eaac8b, #ff2d55, #355070, #6d597a);
+   }
+	60% {
+		background-image: linear-gradient(to right, #e56b6f, #eaac8b, #ff2d55, #355070, #6d597a, #b56576);
+   }
+	100% {
+		background-image: linear-gradient(to right, #eaac8b, #ff2d55, #355070, #6d597a, #b56576, #e56b6f);
+   }
+}
+
+
+/* Hide the button by default */
+#proceed-button {
+	margin-top: 10%;
+	background-color: #ffffff;
+	color: #000000;
+	border-radius: 10px;
+	border: 0cm;
+	width: 50%;
+	font-size: large;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+#proceed-button:hover {
+	background-color: #000000;
+	color: #ffffff;
+}
