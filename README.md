@@ -24,18 +24,19 @@ In the next part, we recommend displaying all important shields for your project
 
 
 
-A quick short description of what this project is about. It should be explained in
-3 - 4 four sentences to catch the eye of the viewer of the Githu repository. 
-It can contain some technologies, and what is the outcome of the project.
+## Inspiration
+
+A huge portion of corporate code is written in programming languages/frameworks from the digital Stone Age. In order for them to recruit developers with today's skills, be secure, and follow the trends migration to more modern technologies is of high importance.
+
+## What it does
+
+Our solutions is simple like eating a cake. All you have to do is give it a github repository and what it does is:
+- outputs a pseudo-code with the structure of the repo
+- give the user the ability to interact with it and make code changes without changing a single line
+- convert the pseudocode to the programming language/framework of interest (using ready solutions like Pythagoras or manually)
 
 ![image](.template_images/Mid.png)
 
-
-## Other Project repositories
-
-<!--
-If your project is constructed out of multiple Repositories, you can specify them here:
--->
 
 ## Documentation
 
