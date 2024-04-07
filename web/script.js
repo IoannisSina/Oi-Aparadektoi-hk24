@@ -9,33 +9,43 @@ slider.on('mousedown touchstart', function(event){
 	initialMouse = event.clientX || event.originalEvent.touches[0].pageX;
 });
 
-$(document.body, '#slider').on('mouseup touchend', function(event) {
-    if (!mouseIsDown)
-        return;
-    mouseIsDown = false;
-    var currentMouse = event.clientX || event.changedTouches[0].pageX;
-    var relativeMouse = currentMouse - initialMouse;
+$(document.body, '#slider').on('mouseup touchend', function (event) {
+	if (!mouseIsDown)
+		return;
+	mouseIsDown = false;
+	var currentMouse = event.clientX || event.changedTouches[0].pageX;
+	var relativeMouse = currentMouse - initialMouse;
 
-    if (relativeMouse < slideMovementTotal) {
-        $('.slide-text').fadeTo(300, 1);
-        slider.animate({
-            left: "-10px"
-        }, 300);
-        return;
-    }
-    // ON DRAG FUNCTIONALITY post request to the server
+	if (relativeMouse < slideMovementTotal) {
+		$('.slide-text').fadeTo(300, 1);
+		slider.animate({
+			left: "-10px"
+		}, 300);
+		return;
+	}
+	slider.addClass('unlocked');
+	$('#locker').text('lock_outline');
+	setTimeout(function(){
+		slider.on('click tap', function(event){
+			if (!slider.hasClass('unlocked'))
+				return;
+			slider.removeClass('unlocked');
+			$('#locker').text('lock_open');
+			slider.off('click tap');
+		});
+	}, 0);
+	// ON DRAG FUNCTIONALITY get request to the server
     var urlText = $('#gitUrl').val();
+	$('.progress').css('display', 'block');
 	console.log(urlText) // Assuming your input field has id "url-input"
-    $.post('http://localhost:8000/description', {
-        urlText: urlText
-    }, function(data) {
+    $.get('http://localhost:8000/description/'+urlText, function(data) {
         // Handle the response here and put it in the big-textarea-raw textarea
 		$('#big-textarea-raw').val(data);
 		$('#big-textarea-edited').val(data);
+		$('.progress').css('display', 'none');
+		$('#proceed-button').css('display', 'block');
     });
 });
-
-
 
 $(document.body).on('mousemove touchmove', function(event){
 	if (!mouseIsDown)
@@ -56,15 +66,4 @@ $(document.body).on('mousemove touchmove', function(event){
 		return;
 	}
 	slider.css({'left': relativeMouse - 10});
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Code inside this function will execute after the HTML is fully loaded
-    setTimeout(function() {
-        // Show the button
-        var button = document.getElementById("proceed-button");
-        if (button) {
-            button.style.display = "block";
-        }
-    }, 3000); // Change 3000 to the time your loading takes in milliseconds
 });
